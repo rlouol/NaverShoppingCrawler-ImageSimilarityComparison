@@ -18,5 +18,5 @@ https://medium.com/daangn/%EC%9D%B4%EB%AF%B8%EC%A7%80-%ED%83%90%EC%A7%80%EA%B8%B
 9. app.py가 있는 프로젝트 폴더의 경로에서 "flask run"을 입력하여 구동
 
 ※ 네이버 API를 가져올 때 Client Id와 Client Secret이 필요합니다. 
-  네이버 개발자 포럼(https://developers.naver.com/main/)에 문의. 
+  네이버 개발자 포럼( https://developers.naver.com/main/ )에 문의. 
   
