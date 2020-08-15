@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+    <head>
+        <title>검색 페이지</title>
+        <link rel="stylesheet" href=" {{ url_for('static', filename='spectre.css') }}">
+        <link rel="stylesheet" href=" {{ url_for('static', filename='spectre-exp.css') }}">
+        <link rel="stylesheet" href=" {{ url_for('static', filename='spectre-icons.css') }}">
+        <style>
+            body {
+                background-image: url("{{ url_for('static', filename='bgimg.jpg') }}");
+                text-align: center;
+                /* 유동적인 배경 이미지 사이즈 설정 */
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+            }
+            /* 로딩 이미지 속성 */
+            #loading {
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                position: fixed;
+                display: block;
+                opacity: 0.8;
+                background-color: #fff;
+                z-index: 99;
+                text-align: center;
+            }
+            /* 로딩 이미지 정중앙 배치 */
+            #loading-image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 100;
+                margin: auto;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script>
+            $(window).load(function() {
+                $('#loading').hide();
+            });
+            function spinner() {
+                document.getElementById("loading").style.display = "block";
+            }
+        </script>
+    </head>
+    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+        <div id="loading">
+            <img id="loading-image" src="{{ url_for('static', filename='loading.gif') }}" alt="Loading..." />
+        </div>
+        <header class="navbar">
+            <section class="navbar-section">
+                <form action = "http://127.0.0.1:5000/search" method = "post">
+                    <div class="input-group input-inline" 
+                        style="position:absolute; left:50%; top:65%; 
+                        transform:translate(-50%, -50%);">
+                        <input class="form-input" type="text" name = "keyword" size="75" maxlength="100" placeholder="검색어를 입력하세요">&nbsp;
+                        <input class="btn btn-primary input-group-btn" type="submit" value="검색" onclick="spinner()">
+                    </div>
+                </form>    
+            </section>
+        </header>
+        <footer>
+            <div class="input-group input-inline" 
+                        style="position:absolute; left:50%; top:94%; 
+                        transform:translate(-50%, -50%);">
+                <p class="label label-rounded label-secondary" style="font-family: sans-serif;">
+                    CSS with <span class="label label-rounded label-primary">
+                        <a href="https://picturepan2.github.io/spectre/index.html" 
+                        style="text-decoration: none; color:white">
+                            Spectre 0.5.9</a></span> 
+                </p>
+            </div>
+        </footer>
+    </body>
+</html>

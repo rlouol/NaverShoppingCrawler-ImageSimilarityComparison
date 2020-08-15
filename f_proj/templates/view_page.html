@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+    <head>
+        <title>
+            조회결과
+        </title>
+        <link rel="stylesheet" href=" {{ url_for('static', filename='spectre.css') }}">
+        <link rel="stylesheet" href=" {{ url_for('static', filename='spectre-exp.css') }}">
+        <link rel="stylesheet" href=" {{ url_for('static', filename='spectre-icons.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+        <style>
+            body {
+                background-image: url("{{ url_for('static', filename='waves.png') }}");
+                /* 유동적인 배경 이미지 사이즈 설정 */
+                background-repeat: no-repeat;
+                background-attachment: local;
+                background-size: contain;
+                background-color: rgb(102, 102, 102);
+            }
+            /* 로딩 이미지 속성 */
+            #loading {
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                position: fixed;
+                display: block;
+                opacity: 0.8;
+                background-color: #fff;
+                z-index: 99;
+                text-align: center;
+            }
+            /* 로딩 이미지 정중앙 배치 */
+            #loading-image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 100;
+                margin: auto;
+            }
+            #back {
+                box-shadow: 3px 3px 6px;
+                position: fixed;
+                top:88%;
+                left:10%;
+            }
+            #font {
+                font-family: 'Noto Sans KR', sans-serif;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script>
+            $(window).load(function() {
+                $('#loading').hide();
+            });
+            function spinner() {
+                document.getElementById("loading").style.display = "block";
+            }
+        </script>
+    </head>
+    <body>
+        <div id="loading">
+            <img id="loading-image" src="{{ url_for('static', filename='loading.gif') }}" alt="Loading..." />
+        </div>
+        <a href="http://127.0.0.1:5000/" style="text-decoration: none;" id="back">
+            <button class="btn btn-primary btn-action btn-lg">
+                <i class="icon icon-back">
+                </i>
+            </button>
+        </a>
+        <header style="text-align: center;">
+            <h2 id="font" style="font-family:;"><ins>{{ keyword }}</ins>에 대한 검색 결과입니다.</h2>
+            <p id="font">설정된 검색 건수 : <b>{{ number }}</b>개</p>
+            <p id="font">총 검색된 결과 수 : <b>{{ result_num }}</b>개</p>
+        </header>
+        <hr>
+        <br><br>
+        <!--
+            cont_idx : 검색된 컨텐츠들의 번호
+        -->
+        {% for v in list_item %}
+            <div class="card" style="width:40%; height:100%; 
+                box-shadow: 3px 3px 6px; margin:5%; float:left;">
+                <div class="card-image">
+                    <img src="{{ v[1] }}" class="img-responsive">
+                </div>
+                <div class="card-header">
+                        <div class="card-title h5">{{ v[0] }}</div>
+                </div>
+                <div class="card-body">
+                    <div class="hero-body">Similarity : {{ v[3] }}
+                        {% if loop.index == 1 %} <!-- target image -->
+                            &nbsp;(target)
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ v[2] }}" style="text-decoration: none;">
+                        <button class="btn">Go</button>
+                    </a>
+                </div>
+            </div>
+            <!-- 한 줄에 2개씩 정렬 => clear 속성 이용 https://aboooks.tistory.com/79 -->
+            {% set c_idx = (loop.index % 2) %}
+            {% if c_idx == 0 %}
+                <div style="clear:left;"><hr></div>
+            {% endif %}
+        {% endfor %}
+        <footer>
+            <div class="input-group input-inline" 
+                    style="position:fixed; left:50%; top:94%; 
+                    transform:translate(-50%, -50%);">
+                <p class="label label-rounded label-secondary" style="font-family: sans-serif;">
+                    CSS with <span class="label label-rounded label-primary">
+                <a href="https://picturepan2.github.io/spectre/index.html" 
+                    style="text-decoration: none; color:white">
+                       Spectre 0.5.9</a></span> 
+                </p>
+            </div>
+        </footer>
+    </body>
+</html>
