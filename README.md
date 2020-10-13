@@ -30,6 +30,11 @@ https://medium.com/daangn/%EC%9D%B4%EB%AF%B8%EC%A7%80-%ED%83%90%EC%A7%80%EA%B8%B
 <img src="https://user-images.githubusercontent.com/56918200/95822925-bdadab00-0d67-11eb-9989-5311b09cc44e.png" width="80%"></img>
 <br>
 
+********** 시연 동영상 링크 **********<br>
+<a href="https://drive.google.com/file/d/1pn5qyAX7TyKlQ7KW5qffFQCOaeN-ld78/view?usp=sharing" target="_blank"><img src="https://user-images.githubusercontent.com/56918200/95824914-103c9680-0d6b-11eb-98aa-54a2184b8c6f.jpg" 
+alt="IMAGE ALT TEXT HERE" width="720" height="540" border="10" /></a>
+
+
 ※ 네이버 API를 가져올 때 Client Id와 Client Secret이 필요합니다. 
   네이버 개발자 포럼( https://developers.naver.com/main/ )에 문의. 
   
